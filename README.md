@@ -8,7 +8,7 @@ A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds 
  
  ## Usage
  
- To use register the resource type using the public [Docker image](https://hub.docker.com/repository/docker/mtharrison/github-pr-comment-resource) `mtharrison/github-pr-comment-resource`
+ To use register the resource type using the public [Docker image](https://hub.docker.com/repository/docker/mtharrison/github-pr-comment-resource) `mtharrison/github-pr-comment-resource`.
 
  ```yaml
  resource_types:
@@ -33,7 +33,7 @@ resources:
       v3_endpoint: '[...]'
       regex: '^deploy ([a-zA-Z0-9_.-]+) to ([a-zA-Z0-9_.-]+) please$'
  ```
- Finally you can use the resource in any jobs
+ Finally you can use the resource as an input/trigger to any jobs.
  ```yaml
 jobs:
   - name: deployment-test
