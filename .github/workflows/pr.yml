@@ -2,7 +2,9 @@ name: Pull Request
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
+  push:
+    branches: [master]
 
 jobs:
   build:
