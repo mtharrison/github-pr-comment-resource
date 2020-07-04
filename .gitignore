@@ -1,4 +1,6 @@
 hidden
+out
+
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -14,3 +16,4 @@ hidden
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+

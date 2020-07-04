@@ -1,8 +1,7 @@
 FROM golang:1.14 as builder
 ADD . /src
 WORKDIR /src
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o out/check ./cmd/check
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o out/in ./cmd/in
+RUN make build-linux
 
 FROM alpine:3.12
 LABEL MAINTAINER=mtharrison
