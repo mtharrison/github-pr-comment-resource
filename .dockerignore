@@ -1,0 +1,8 @@
+# Ignore everything
+**
+
+!cmd/**
+!internal/**
+!go.mod
+!go.sum
+!Makefile
