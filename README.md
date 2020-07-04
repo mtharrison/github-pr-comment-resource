@@ -15,6 +15,7 @@ A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds 
     source:
       repository: mtharrison/github-pr-comment-resource
       tag: v0.2.0
+      
 resources:
   - name: deployment-trigger
     type: github-pr-comment-resource
@@ -24,6 +25,7 @@ resources:
       access_token: '[...]'
       v3_endpoint: '[...]'
       regex: ^deploy (\w+) to (\w+) please$
+      
 jobs:
   - name: deployment-test
     plan:
