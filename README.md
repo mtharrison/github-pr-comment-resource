@@ -1,12 +1,14 @@
 # github-pr-comment-resource
 
- ![master](https://github.com/mtharrison/github-pr-comment-resource/workflows/Master/badge.svg?branch=master) ![release](https://img.shields.io/github/v/release/mtharrison/github-pr-comment-resource)
+![master](https://github.com/mtharrison/github-pr-comment-resource/workflows/Master/badge.svg?branch=master) ![release](https://img.shields.io/github/v/release/mtharrison/github-pr-comment-resource)
 
 A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds from Github PR comments. Also allows parameters to be provided in comments.
  
+![image](https://cldup.com/beeBL0NNQ3.png)
+ 
  ---
  
- ## Usage
+## Usage
  
  To use register the resource type using the public [Docker image](https://hub.docker.com/repository/docker/mtharrison/github-pr-comment-resource) `mtharrison/github-pr-comment-resource`.
 
