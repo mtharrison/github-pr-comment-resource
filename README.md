@@ -8,6 +8,8 @@ A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds 
  
  ## Usage
  
+ To use register the resource type using the public [Docker image](https://hub.docker.com/repository/docker/mtharrison/github-pr-comment-resource) `mtharrison/github-pr-comment-resource`
+
  ```yaml
  resource_types:
   - name: github-pr-comment-resource
@@ -15,6 +17,12 @@ A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds 
     source:
       repository: mtharrison/github-pr-comment-resource
       tag: v0.2.0
+ ```
+ Then create a new resource using this resource type. You'll need to provide the `repository`, `access_token`, optionally a `v3_endpoint` if you're using Github Enterprise, otherwise this will default to the public Github API.
+ 
+ Optionally you can provide a `regex` (valid [Go regex](https://golang.org/pkg/regexp/) only). Comments that match this regex only will become new versions. If the regex contains capture groups they will be provided by the resource too.
+
+ ```yaml
 resources:
   - name: deployment-trigger
     type: github-pr-comment-resource
@@ -24,6 +32,9 @@ resources:
       access_token: '[...]'
       v3_endpoint: '[...]'
       regex: '^deploy ([a-zA-Z0-9_.-]+) to ([a-zA-Z0-9_.-]+) please$'
+ ```
+ Finally you can use the resource in any jobs
+ ```yaml
 jobs:
   - name: deployment-test
     plan:
@@ -46,3 +57,6 @@ jobs:
                 apk add jq &> /dev/null
                 cat deployment-trigger/comment.json | jq
  ```
+ In the resource directory a `comment.json` file will be written containing the resource data. See screenshot below:
+ 
+ ![screenshot](https://cldup.com/ZyLNgJX85r.png)
