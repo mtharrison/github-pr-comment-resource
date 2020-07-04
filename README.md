@@ -1,3 +1,2 @@
-# github-pr-comment-resource
+# github-pr-comment-resource ![master](https://github.com/mtharrison/github-pr-comment-resource/workflows/Master/badge.svg?branch=master)
 
-![Go](https://github.com/mtharrison/github-pr-comment-resource/workflows/Go/badge.svg?branch=master)
