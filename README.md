@@ -1,6 +1,6 @@
 # github-pr-comment-resource
 
-![master](https://github.com/mtharrison/github-pr-comment-resource/workflows/Master/badge.svg?branch=master) ![release](https://img.shields.io/github/v/release/mtharrison/github-pr-comment-resource)
+![master](https://github.com/mtharrison/github-pr-comment-resource/workflows/Master/badge.svg?branch=master) ![Release](https://github.com/mtharrison/github-pr-comment-resource/workflows/Release/badge.svg) ![release](https://img.shields.io/github/v/release/mtharrison/github-pr-comment-resource)
 
 A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds from Github PR comments. Also allows parameters to be provided in comments.
  
