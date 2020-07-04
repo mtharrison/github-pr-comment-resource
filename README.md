@@ -24,7 +24,7 @@ resources:
       repository: golang/go
       access_token: '[...]'
       v3_endpoint: '[...]'
-      regex: ^deploy (\w+) to (\w+) please$
+      regex: ^deploy ([a-zA-Z0-9_.-]+) to ([a-zA-Z0-9_.-]+) please$
       
 jobs:
   - name: deployment-test
