@@ -15,7 +15,6 @@ A resource type for [Concourse CI](https://concourse-ci.org/) to trigger builds 
     source:
       repository: mtharrison/github-pr-comment-resource
       tag: v0.2.0
-      
 resources:
   - name: deployment-trigger
     type: github-pr-comment-resource
@@ -24,8 +23,7 @@ resources:
       repository: golang/go
       access_token: '[...]'
       v3_endpoint: '[...]'
-      regex: ^deploy ([a-zA-Z0-9_.-]+) to ([a-zA-Z0-9_.-]+) please$
-      
+      regex: '^deploy ([a-zA-Z0-9_.-]+) to ([a-zA-Z0-9_.-]+) please$'
 jobs:
   - name: deployment-test
     plan:
@@ -47,5 +45,4 @@ jobs:
               - |
                 apk add jq &> /dev/null
                 cat deployment-trigger/comment.json | jq
-
  ```
