@@ -21,15 +21,21 @@ jobs:
 
     - name: Test code
       run: go test -v ./...
+    
+    - name: Get the version	
+      id: vars	
+      run: |
+        echo ::set-output name=tag::$(echo ${GITHUB_REF#refs/*/})
+        echo ::set-output name=image::mtharrison/github-pr-comment-resource
 
     - name: Login to DockerHub
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
     - name: Build the tagged Docker image
-      run: docker build . --file Dockerfile --tag mtharrison/github-pr-comment-resource:${{ github.ref }}
+      run: docker build . -t ${{steps.vars.outputs.image}}:${{steps.vars.outputs.tag}}
 
     - name: Push the tagged Docker image
-      run: docker push mtharrison/github-pr-comment-resource:${{ github.ref }}
+      run: docker push ${{steps.vars.outputs.image}}:${{steps.vars.outputs.tag}}
 
     - name: Create Release
       id: create_release
