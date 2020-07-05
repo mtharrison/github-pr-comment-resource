@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   push:
@@ -6,8 +6,8 @@ on:
     - '*'
 
 jobs:
-  build:
-    name: Build
+  release:
+    name: release
     runs-on: ubuntu-latest
     steps:
     - name: Set up Go 1.x
@@ -16,24 +16,20 @@ jobs:
         go-version: ^1.14
       id: go
 
-    - name: Check out code into the Go module directory
+    - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Test
+    - name: Test code
       run: go test -v ./...
 
-    - name: Login to DockerHub Registry
+    - name: Login to DockerHub
       run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-    - name: Get the version
-      id: vars
-      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-
     - name: Build the tagged Docker image
-      run: docker build . --file Dockerfile --tag mtharrison/github-pr-comment-resource:${{steps.vars.outputs.tag}}
+      run: docker build . --file Dockerfile --tag mtharrison/github-pr-comment-resource:${{ github.ref }}
 
     - name: Push the tagged Docker image
-      run: docker push mtharrison/github-pr-comment-resource:${{steps.vars.outputs.tag}}
+      run: docker push mtharrison/github-pr-comment-resource:${{ github.ref }}
 
     - name: Create Release
       id: create_release
