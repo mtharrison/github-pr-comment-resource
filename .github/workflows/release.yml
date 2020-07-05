@@ -22,7 +22,7 @@ jobs:
     - name: Test code
       run: go test -v ./...
     
-    - name: Get the version	
+    - name: Set some variables
       id: vars	
       run: |
         echo ::set-output name=tag::$(echo ${GITHUB_REF#refs/*/})
