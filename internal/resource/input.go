@@ -61,6 +61,17 @@ func (i *Input) Validate(requireVersion bool) error {
 	return nil
 }
 
+// PutInput is provided to the out script on STDIN
+type PutInput struct {
+	Source *Source    `json:"source"`
+	Params *PutParams `json:"params"`
+}
+
+// PutParams are the params that can be provided in a 'put' step
+type PutParams struct {
+	CommentFile string `json:"comment_file"`
+}
+
 // Source is the configurable settings a user provides to this resource
 type Source struct {
 	RepositoryString string `json:"repository"`
@@ -93,6 +104,23 @@ func GetInput(reader io.Reader, requireVersion bool) (Input, error) {
 	}
 
 	err = input.Validate(requireVersion)
+	if err != nil {
+		return input, err
+	}
+
+	return input, nil
+}
+
+// GetPutInput takes a reader and constructs a PutInput
+func GetPutInput(reader io.Reader) (PutInput, error) {
+	input := PutInput{}
+
+	rawInput, err := ioutil.ReadAll(reader)
+	if err != nil {
+		return input, err
+	}
+
+	err = json.Unmarshal(rawInput, &input)
 	if err != nil {
 		return input, err
 	}
