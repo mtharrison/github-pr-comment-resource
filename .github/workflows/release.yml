@@ -38,6 +38,7 @@ jobs:
       run: docker push ${{steps.vars.outputs.image}}:${{steps.vars.outputs.tag}}
 
     - name: Create Release
+      if: ${{ !startsWith(github.ref, "refs/custom-") }}
       id: create_release
       uses: actions/create-release@v1
       env:
